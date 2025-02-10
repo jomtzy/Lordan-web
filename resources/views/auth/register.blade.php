@@ -23,19 +23,20 @@
             <div class="form-content">
                 <div class="signup-form">
                     <div class="title">Signup</div>
-                    <form action="#">
+                    <form action="{{route('register')}}" method="POST" >
+                        @csrf
                         <div class="input-boxes">
                             <div class="input-box">
-                                <i class="fas fa-user"></i>
-                                <input type="text" placeholder="Enter your name" required>
+                                <i class="fas fa-user"></i>                              
+                                <input type="text" :value="old('name')" placeholder="Enter your name" required>
                             </div>
                             <div class="input-box">
                                 <i class="fas fa-envelope"></i>
-                                <input type="text" placeholder="Enter your email" required>
-                            </div>
+                                <input type="text" :value="old('email')" placeholder="Enter your email" required>
+                            </div>                 
                             <div class="input-box">
                                 <i class="fas fa-lock"></i>
-                                <input type="password" placeholder="Enter your password" required>
+                                <input type="password" :value="old('password')" placeholder="Enter your password" required>
                             </div>
                             <div class="button input-box">
                                 <input type="submit" value="Submit">
