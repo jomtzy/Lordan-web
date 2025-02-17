@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
@@ -22,21 +22,29 @@
             <div class="form-content">
                 <div class="login-form">
                     <div class="title">Login</div>
-                    <form action="{{route('login')}}" method="POST">
+
+                    @if (session('error'))
+                        <div class="alert alert-danger">
+                            {{ session('error') }}
+                        </div>
+                    @endif
+
+                    <form action="{{ route('login') }}" method="POST">
+                        @csrf
                         <div class="input-boxes">
                             <div class="input-box">
                                 <i class="fas fa-envelope"></i>
-                                <input type="text" :value="old('email')" placeholder="Enter your email" required>
+                                <input type="email" name="email" value="{{ old('email') }}" placeholder="Enter your email" required>
                             </div>
                             <div class="input-box">
                                 <i class="fas fa-lock"></i>
-                                <input type="password" :value="old('password')" placeholder="Enter your password" required>
+                                <input type="password" name="password" placeholder="Enter your password" required>
                             </div>
                             <div class="text"><a href="#">Forgot password?</a></div>
                             <div class="button input-box">
-                                <input type="submit" value="Submit">
+                                <input type="submit" value="Login">
                             </div>
-                            <div class="text sign-up-text">Don't have an account? <a href="{{route('register')}}">Signup now</a></div>
+                            <div class="text sign-up-text">Don't have an account? <a href="{{ route('register') }}">Signup now</a></div>
                         </div>
                     </form>
                 </div>
